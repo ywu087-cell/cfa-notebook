@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CFA Interactive Notebook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="notebook-topbar">
+    <div>
+      <p class="eyebrow">CFA Interactive Notebook</p>
+      <h1>一个持续生长的 CFA 交互笔记本</h1>
+    </div>
+    <div class="top-actions">
+      <label class="search-box">
+        <span>搜索</span>
+        <input id="searchInput" type="search" placeholder="利率、久期、DCF、风险..." autocomplete="off">
+      </label>
+      <div class="progress-panel" aria-label="学习进度">
+        <span id="progressText">0 / 5</span>
+        <div class="progress-track">
+          <div id="progressBar" class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="notebook-shell">
+    <aside class="library">
+      <div class="library-header">
+        <h2>笔记本目录</h2>
+        <button id="reviewMode" class="small-button" type="button">复习中心</button>
+      </div>
+      <div id="moduleList" class="module-list" aria-label="CFA 章节目录"></div>
+    </aside>
+
+    <section class="chapter" aria-live="polite">
+      <div class="chapter-header">
+        <div>
+          <p id="chapterPath" class="eyebrow">Level I / Quantitative Methods</p>
+          <h2 id="chapterTitle">钱的时间价值</h2>
+          <p id="chapterSummary" class="chapter-summary"></p>
+        </div>
+        <button id="markDone" class="primary-button" type="button">标记掌握</button>
+      </div>
+
+      <article class="lesson-body">
+        <section>
+          <h3>这个概念在说什么？</h3>
+          <p id="plainExplain"></p>
+        </section>
+        <section>
+          <h3>干货拆解</h3>
+          <div id="deepDive" class="lesson-list"></div>
+        </section>
+        <section>
+          <h3>生活类比</h3>
+          <p id="analogy"></p>
+        </section>
+        <section>
+          <h3>金融里怎么用？</h3>
+          <p id="financeUse"></p>
+        </section>
+        <section>
+          <h3>关键公式与指标</h3>
+          <div id="formulaList" class="lesson-list compact"></div>
+        </section>
+        <section>
+          <h3>现实世界链路</h3>
+          <p id="scenarioLine"></p>
+        </section>
+      </article>
+
+      <div class="memory-strip">
+        <div>
+          <span>一句话记忆</span>
+          <strong id="memoryLine"></strong>
+        </div>
+        <div>
+          <span>常见误解</span>
+          <strong id="trapLine"></strong>
+        </div>
+      </div>
+    </section>
+
+    <aside class="study-tools">
+      <section class="tool-block">
+        <div class="tool-heading">
+          <h2>概念卡片</h2>
+          <button id="flipCard" class="icon-button" type="button" aria-label="翻转卡片">↻</button>
+        </div>
+        <div id="conceptCard" class="concept-card" tabindex="0">
+          <p id="cardFront"></p>
+          <span>点击翻转</span>
+        </div>
+      </section>
+
+      <section class="tool-block">
+        <div class="tool-heading">
+          <h2>情景问答</h2>
+          <button id="nextQuiz" class="icon-button" type="button" aria-label="下一题">›</button>
+        </div>
+        <p id="quizQuestion" class="quiz-question"></p>
+        <div id="quizOptions" class="quiz-options"></div>
+        <p id="quizFeedback" class="quiz-feedback"></p>
+      </section>
+    </aside>
+
+    <section class="map-section">
+      <div class="map-heading">
+        <h2>知识关系地图</h2>
+        <p id="mapSummary"></p>
+      </div>
+      <div id="mindMap" class="mind-map"></div>
+      <div class="relationship-panel">
+        <h3>关系链</h3>
+        <div id="relationshipList"></div>
+      </div>
+      <div class="relationship-panel">
+        <h3>和其他知识的连接</h3>
+        <div id="crossLinks"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="chapters.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
