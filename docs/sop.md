@@ -20,6 +20,13 @@ Each chapter should include:
 - Relationship chains
 - Cross-topic links
 
+## Clarity Rules
+
+- Do not introduce English abbreviations or formula symbols without immediate Chinese explanation.
+- When a formula appears, define every symbol next to the formula, for example: `Rp = portfolio return`, `Rf = risk-free rate`, `σp = portfolio standard deviation`.
+- For beginner-facing chapters, prefer `中文名称 + English term` on first appearance, then use the shorter term later.
+- If a concept depends on another concept that has not appeared earlier in the chapter, add one sentence of bridge explanation before using it.
+
 ## Data Location
 
 Add new chapters to:
