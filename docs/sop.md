@@ -29,6 +29,9 @@ Each chapter should include:
 - If a concept depends on another concept that has not appeared earlier in the chapter, add one sentence of bridge explanation before using it.
 - Concept cards should test recall and distinction, not only show a definition. Use question-style fronts and explanatory backs.
 - Quiz distractors should be plausible misconceptions, not obviously irrelevant answers. Every option should feel worth thinking about.
+- Knowledge-map nodes must teach, not label. Each node should include: what it means, why it matters, and a concrete real-world example.
+- Cross-topic links must explain the mechanism of the connection. Do not write only terms such as `DCF` or `债券久期`; write why this chapter depends on or feeds into that topic.
+- Relationship chains should describe causality step by step: trigger, direction, affected concept, and practical consequence.
 
 ## Data Location
 

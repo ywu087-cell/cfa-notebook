@@ -55,7 +55,7 @@ function matchesSearch(chapter) {
     chapter.memory,
     chapter.trap,
     ...(chapter.cards || []).flatMap((card) => [card.front, card.back]),
-    ...chapter.crossLinks,
+    ...chapter.crossLinks.flatMap((link) => (typeof link === "string" ? [link] : [link.name, link.why])),
     ...chapter.map.flat(),
     ...chapter.deepDive.flat()
   ].join(" ").toLowerCase();
@@ -170,10 +170,10 @@ function renderMap(chapter) {
   root.innerHTML = `<strong>${chapter.title}</strong><span>${chapter.memory}</span>`;
   mindMap.appendChild(root);
 
-  chapter.map.forEach(([name, detail]) => {
+  chapter.map.forEach(([name, detail, example]) => {
     const node = document.createElement("div");
     node.className = "map-node";
-    node.innerHTML = `<strong>${name}</strong><span>${detail}</span>`;
+    node.innerHTML = `<strong>${name}</strong><span>${detail}</span>${example ? `<small>${example}</small>` : ""}`;
     mindMap.appendChild(node);
   });
 
@@ -189,9 +189,11 @@ function renderMap(chapter) {
   crossLinks.innerHTML = '<div class="cross-link-list"></div>';
   const chips = crossLinks.querySelector(".cross-link-list");
   chapter.crossLinks.forEach((link) => {
-    const chip = document.createElement("span");
+    const chip = document.createElement("div");
     chip.className = "cross-link";
-    chip.textContent = link;
+    const name = typeof link === "string" ? link : link.name;
+    const why = typeof link === "string" ? "" : link.why;
+    chip.innerHTML = `<strong>${name}</strong>${why ? `<span>${why}</span>` : ""}`;
     chips.appendChild(chip);
   });
 }
