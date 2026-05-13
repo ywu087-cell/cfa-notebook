@@ -19,6 +19,7 @@ Each chapter should include:
 - Mind-map nodes
 - Relationship chains
 - Cross-topic links
+- Three or more concept cards per chapter
 
 ## Clarity Rules
 
@@ -26,6 +27,8 @@ Each chapter should include:
 - When a formula appears, define every symbol next to the formula, for example: `Rp = portfolio return`, `Rf = risk-free rate`, `σp = portfolio standard deviation`.
 - For beginner-facing chapters, prefer `中文名称 + English term` on first appearance, then use the shorter term later.
 - If a concept depends on another concept that has not appeared earlier in the chapter, add one sentence of bridge explanation before using it.
+- Concept cards should test recall and distinction, not only show a definition. Use question-style fronts and explanatory backs.
+- Quiz distractors should be plausible misconceptions, not obviously irrelevant answers. Every option should feel worth thinking about.
 
 ## Data Location
 

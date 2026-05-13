@@ -168,6 +168,11 @@ h3 {
   gap: 14px;
 }
 
+.tool-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .small-button,
 .primary-button,
 .icon-button {

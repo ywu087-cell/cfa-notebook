@@ -1,6 +1,7 @@
 const state = {
   activeChapter: CFA_CHAPTERS[0].id,
   flipped: false,
+  cardIndex: 0,
   quizIndex: 0,
   reviewOnly: false,
   searchTerm: "",
@@ -24,6 +25,7 @@ const trapLine = document.getElementById("trapLine");
 const conceptCard = document.getElementById("conceptCard");
 const cardFront = document.getElementById("cardFront");
 const flipCard = document.getElementById("flipCard");
+const nextCard = document.getElementById("nextCard");
 const nextQuiz = document.getElementById("nextQuiz");
 const quizQuestion = document.getElementById("quizQuestion");
 const quizOptions = document.getElementById("quizOptions");
@@ -52,6 +54,7 @@ function matchesSearch(chapter) {
     chapter.summary,
     chapter.memory,
     chapter.trap,
+    ...(chapter.cards || []).flatMap((card) => [card.front, card.back]),
     ...chapter.crossLinks,
     ...chapter.map.flat(),
     ...chapter.deepDive.flat()
@@ -145,6 +148,19 @@ function renderQuiz(chapter) {
   });
 }
 
+function chapterCards(chapter) {
+  return chapter.cards || [{ front: chapter.title, back: chapter.cardBack }];
+}
+
+function renderConceptCard(chapter) {
+  const cards = chapterCards(chapter);
+  const card = cards[state.cardIndex % cards.length];
+  cardFront.textContent = state.flipped ? card.back : card.front;
+  conceptCard.querySelector("span").textContent = state.flipped
+    ? `${state.cardIndex + 1} / ${cards.length} 点击回到题面`
+    : `${state.cardIndex + 1} / ${cards.length} 点击查看答案`;
+}
+
 function renderMap(chapter) {
   mapSummary.textContent = `${chapter.title} 的因果关系与跨主题连接`;
   mindMap.innerHTML = "";
@@ -184,6 +200,7 @@ function renderChapter(chapterId) {
   const chapter = getChapter(chapterId);
   state.activeChapter = chapter.id;
   state.flipped = false;
+  state.cardIndex = 0;
   state.quizIndex = 0;
 
   chapterPath.textContent = `${chapter.level} / ${chapter.module}`;
@@ -197,8 +214,7 @@ function renderChapter(chapterId) {
   scenarioLine.textContent = chapter.scenario;
   memoryLine.textContent = chapter.memory;
   trapLine.textContent = chapter.trap;
-  cardFront.textContent = chapter.title;
-  conceptCard.querySelector("span").textContent = "点击翻转";
+  renderConceptCard(chapter);
 
   renderQuiz(chapter);
   renderMap(chapter);
@@ -209,8 +225,7 @@ function renderChapter(chapterId) {
 function flipConceptCard() {
   const chapter = getChapter(state.activeChapter);
   state.flipped = !state.flipped;
-  cardFront.textContent = state.flipped ? chapter.cardBack : chapter.title;
-  conceptCard.querySelector("span").textContent = state.flipped ? "点击回到术语" : "点击翻转";
+  renderConceptCard(chapter);
 }
 
 searchInput.addEventListener("input", (event) => {
@@ -226,6 +241,13 @@ reviewMode.addEventListener("click", () => {
 
 conceptCard.addEventListener("click", flipConceptCard);
 flipCard.addEventListener("click", flipConceptCard);
+nextCard.addEventListener("click", () => {
+  const chapter = getChapter(state.activeChapter);
+  const cards = chapterCards(chapter);
+  state.cardIndex = (state.cardIndex + 1) % cards.length;
+  state.flipped = false;
+  renderConceptCard(chapter);
+});
 nextQuiz.addEventListener("click", () => {
   const chapter = getChapter(state.activeChapter);
   state.quizIndex = (state.quizIndex + 1) % chapter.quizzes.length;
