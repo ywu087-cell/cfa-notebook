@@ -32,6 +32,8 @@ Each chapter should include:
 - Knowledge-map nodes must teach, not label. Each node should include: what it means, why it matters, and a concrete real-world example.
 - Cross-topic links must explain the mechanism of the connection. Do not write only terms such as `DCF` or `债券久期`; write why this chapter depends on or feeds into that topic.
 - Relationship chains should describe causality step by step: trigger, direction, affected concept, and practical consequence.
+- Valuation models such as DCF must include the full workflow, key assumptions, where each assumption comes from, and common failure points. Avoid only stating the formula.
+- For DCF specifically, explain free cash flow, explicit forecast period, terminal value, discount rate, net debt, sensitivity analysis, and why the output is a valuation range rather than a precise number.
 
 ## Data Location
 
